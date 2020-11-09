@@ -2,12 +2,18 @@
   font-size: 60%;
 
   --color-background: #F5F5F5;
+  --color-button: #ff69b4;
+  --color-form: #ff69b4;
+  --color-title: #34CB79;
+  --color-portfolio: #4D8A6F;
+  --color-sub-title: #000000;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  outline: 0;
 }
 
 html, body, #root{
@@ -16,6 +22,7 @@ html, body, #root{
 
 body {
   background: var(--color-background);
+  -webkit-font-smoothing: antialiased;
 }
 
 #root {
@@ -25,12 +32,21 @@ body {
 }
 
 body, input, button {
-  font-family: Roboto, Arial, Helvetica, sans-serif;
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  font-size: 16px;
 }
 
 .container {
   width: 90vw;
   max-width: 700px;
+}
+
+h1, h2, h3, h4, h5, h6, strong {
+  font-weight: 500;
+}
+
+button {
+  cursor: pointer;
 }
 
 @media (min-width: 700px) {
