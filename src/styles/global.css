@@ -1,5 +1,5 @@
 :root{
-  font-size: 60%;
+  font-size: 50%;
 
   --color-background: #F5F5F5;
   --color-button: #ff69b4;
@@ -25,15 +25,9 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-#root {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-body, input, button {
+body, input, textarea, button {
   font-family: 'Roboto', Arial, Helvetica, sans-serif;
-  font-size: 16px;
+  font-size: 1.6rem;
 }
 
 .container {

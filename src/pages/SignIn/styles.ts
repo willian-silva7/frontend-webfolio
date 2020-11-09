@@ -16,46 +16,46 @@ export const Content = styled.div`
   justify-content: center;
   align-items: center;
 
-  width: 100%;
+  width: 100vw;
   max-width: 700px;
 
   form {
-    margin: 80px 0;
-    width: 340px;
+    margin: 4.3rem 0;
+    width: 36.5rem;
     text-align: center;
     color: var(--color-title);
 
     h1 {
-      margin-bottom: 24px;
+      margin-bottom: 5.58rem;
       color: var(--color-title);
     }
 
     input {
       background: var(--color-background);
-      border-radius: 10px;
-      border: 3px solid var(--color-form);
+      border-radius: 1.07rem;
+      border: 0.32rem solid var(--color-form);
       opacity: 0.55;
       color: var(--color-form);
-      padding: 16px;
+      padding: 1.72rem;
       width: 100%;
 
       & + input {
-        margin-top: 8px;
+        margin-top: 0.86rem;
       }
     }
 
     button {
       background: var(--color-form);
-      height: 56px;
-      border-radius: 10px;
+      height: 6.02rem;
+      border-radius: 1.07rem;
       border: 0;
-      padding: 0 16px;
+      padding: 0 1.72rem;
       color: #fff;
       width: 100%;
       font-weight: 500;
-      margin-top: 16px;
+      margin-top: 1.72rem;
       transition: background-color 0.2s;
-      margin-bottom: 24px;
+      margin-bottom: 2.58rem;
 
       &:hover {
         background: ${shade(0.2, '#ff69b4')};
@@ -74,7 +74,7 @@ export const Content = styled.div`
       & + a {
         color: var(--color-form);
         display: block;
-        margin-top: 24px;
+        margin-top: 2.58rem;
         text-decoration: none;
       }
     }
@@ -83,7 +83,7 @@ export const Content = styled.div`
   > a {
     color: var(--color-form);
     display: block;
-    margin-top: 24px;
+    margin-top: 2.58rem;
     text-decoration: none;
     transition: color 0.2s;
 
@@ -91,11 +91,21 @@ export const Content = styled.div`
     align-items: center;
 
     svg {
-      margin-right: 16px;
+      margin-right: 1.72rem;
     }
 
     &:hover {
       color: ${shade(0.2, '#ff69b4')};
+    }
+  }
+
+  @media (min-width: 700px) {
+    form {
+      margin: 8.3rem 0;
+
+      h1 {
+        margin-bottom: 2.58rem;
+      }
     }
   }
 `;

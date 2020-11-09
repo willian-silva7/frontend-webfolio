@@ -32,10 +32,3 @@ const SignIn: React.FC = () => {
 };
 
 export default SignIn;
-
-{
-  /* <a href='https://br.freepik.com/fotos/criancas'>Crianças foto criado por freepik - br.freepik.com</a> */
-}
-{
-  /* // https://image.freepik.com/fotos-gratis/mulher-lendo-para-criancas-na-escola_23-2147663894.jpg */
-}
