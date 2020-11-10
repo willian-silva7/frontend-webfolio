@@ -1,7 +1,8 @@
-import React, { FormEvent, useCallback, useState } from 'react';
+import React, { FormEvent, useCallback, useRef, useState } from 'react';
 import { FiLock, FiMail, FiHome, FiUser } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
+import getValidationsErrors from '../../utils/getValidationErrors';
 import logoImg from '../../assets/logo.svg';
 import Input from '../../components/Input';
 
@@ -13,33 +14,48 @@ const SignIn: React.FC = () => {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
 
-  const handleSubmit = useCallback(async (e: FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = useCallback(
+    async (e: FormEvent) => {
+      e.preventDefault();
 
-    const data = {
-      name,
-      password,
-      institution,
-      email,
-    };
+      const data = {
+        name,
+        password,
+        institution,
+        email,
+      };
 
-    try {
-      const Schema = Yup.object().shape({
-        name: Yup.string().required('Nome é obrigatório'),
-        email: Yup.string()
-          .required('E-mail é obrigatório')
-          .email('Digite um email válido'),
-        password: Yup.string().min(6, 'precisa ter no mínimo 6 digitos'),
-        institution: Yup.string(),
-      });
+      try {
+        const Schema = Yup.object().shape({
+          name: Yup.string().required('Nome é obrigatório'),
+          email: Yup.string()
+            .required('E-mail é obrigatório')
+            .email('Digite um email válido'),
+          password: Yup.string().min(6, 'precisa ter no mínimo 6 digitos'),
+          institution: Yup.string(),
+        });
 
-      await Schema.validate(data, {
-        abortEarly: false,
-      });
-    } catch (err) {
-      console.log(err);
-    }
-  }, []);
+        await Schema.validate(data, {
+          abortEarly: false,
+        });
+      } catch (err) {
+        const errors = getValidationsErrors(err);
+
+        if (errors) {
+          if (errors.name) {
+            console.log(errors.name);
+          }
+          if (errors.email) {
+            console.log(errors.email);
+          }
+          if (errors.password) {
+            console.log(errors.password);
+          }
+        }
+      }
+    },
+    [email, institution, name, password],
+  );
 
   return (
     <>

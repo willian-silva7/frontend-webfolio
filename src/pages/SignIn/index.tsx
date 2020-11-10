@@ -1,22 +1,56 @@
 import React, { FormEvent, useCallback, useState } from 'react';
 import { FiLock, FiLogIn, FiMail } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
+import * as Yup from 'yup';
+import getValidationsErrors from '../../utils/getValidationErrors';
 import logoImg from '../../assets/logo.svg';
 import Input from '../../components/Input';
+import { useAuth } from '../../hooks/AuthContext';
 
 import { Background, Container, Content } from './styles';
 
 const SignIn: React.FC = () => {
+  const { signIn } = useAuth();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleCreateSession = useCallback(
-    (e: FormEvent) => {
+  const handleSubmit = useCallback(
+    async (e: FormEvent) => {
       e.preventDefault();
 
-      console.log(email, password);
+      const data = {
+        password,
+        email,
+      };
+
+      try {
+        const Schema = Yup.object().shape({
+          email: Yup.string()
+            .required('E-mail é obrigatório')
+            .email('Digite um email válido'),
+          password: Yup.string().min(6, 'precisa ter no mínimo 6 digitos'),
+        });
+
+        await Schema.validate(data, {
+          abortEarly: false,
+        });
+
+        signIn(data);
+      } catch (err) {
+        const errors = getValidationsErrors(err);
+
+        if (errors) {
+          if (errors.email) {
+            console.log(errors.email);
+          }
+          if (errors.password) {
+            console.log(errors.password);
+          }
+        }
+      }
     },
-    [email, password],
+    [email, password, signIn],
   );
 
   return (
@@ -25,7 +59,7 @@ const SignIn: React.FC = () => {
         <Content>
           <img src={logoImg} alt="WebFolio" />
 
-          <form onSubmit={handleCreateSession}>
+          <form onSubmit={handleSubmit}>
             <h1>Faça Seu Login</h1>
             <Input
               name="email"
