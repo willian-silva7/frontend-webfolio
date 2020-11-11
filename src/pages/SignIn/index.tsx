@@ -8,9 +8,11 @@ import Input from '../../components/Input';
 import { useAuth } from '../../hooks/AuthContext';
 
 import { Background, Container, Content } from './styles';
+import { useToast } from '../../hooks/ToastContext';
 
 const SignIn: React.FC = () => {
   const { signIn } = useAuth();
+  const { addToast } = useToast();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -36,21 +38,41 @@ const SignIn: React.FC = () => {
           abortEarly: false,
         });
 
-        signIn(data);
-      } catch (err) {
-        const errors = getValidationsErrors(err);
+        await signIn(data);
 
-        if (errors) {
-          if (errors.email) {
-            console.log(errors.email);
+        addToast({
+          type: 'success',
+          title: 'Login Realizado com sucesso',
+          description: `Seja bem vindo ao sistema`,
+        });
+      } catch (err) {
+        if (err instanceof Yup.ValidationError) {
+          const errors = getValidationsErrors(err);
+
+          if (errors) {
+            if (errors.email) {
+              addToast({
+                title: 'Preenchimento de campo obrigatório',
+                description: `${errors.email}`,
+              });
+            }
+            if (errors.password) {
+              addToast({
+                title: 'Preenchimento de campo obrigatório',
+                description: `${errors.password}`,
+              });
+            }
           }
-          if (errors.password) {
-            console.log(errors.password);
-          }
+        } else {
+          addToast({
+            type: 'error',
+            title: 'Erro na autenticação',
+            description: 'Ocorreu um erro cheque suas credenciais ',
+          });
         }
       }
     },
-    [email, password, signIn],
+    [email, password, signIn, addToast],
   );
 
   return (

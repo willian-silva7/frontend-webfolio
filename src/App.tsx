@@ -1,12 +1,12 @@
 import React from 'react';
 import Routes from './routes';
-import { AuthProvider } from './hooks/AuthContext';
+import AppProvider from './hooks';
 import './styles/global.css';
 
 const App: React.FC = () => (
-  <AuthProvider>
+  <AppProvider>
     <Routes />
-  </AuthProvider>
+  </AppProvider>
 );
 
 export default App;
