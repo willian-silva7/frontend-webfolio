@@ -1,7 +1,9 @@
-import styled, { css } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
+import { animated } from 'react-spring';
 
 interface ToastProps {
   type?: string;
+  duration?: boolean;
 }
 
 export const Container = styled.div`
@@ -12,7 +14,18 @@ export const Container = styled.div`
   overflow: hidden;
 `;
 
-export const Toast = styled.div<ToastProps>`
+const appearFromLeft = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(5.37rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
+
+export const Toast = styled(animated.div)<ToastProps>`
   width: 38.7rem;
 
   position: relative;
@@ -21,6 +34,8 @@ export const Toast = styled.div<ToastProps>`
   box-shadow: 0.21rem 0.21rem 0.86rem rgba(0, 0, 0, 0.2);
 
   display: flex;
+
+  animation: ${appearFromLeft} 2s;
 
   background: rgba(179, 235, 235, 0.7);
   color: #3172b7;

@@ -1,6 +1,6 @@
 import React, { FormEvent, useCallback, useState } from 'react';
 import { FiLock, FiLogIn, FiMail } from 'react-icons/fi';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import * as Yup from 'yup';
 import getValidationsErrors from '../../utils/getValidationErrors';
 import logoImg from '../../assets/logo.svg';
@@ -16,6 +16,8 @@ const SignIn: React.FC = () => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const history = useHistory();
 
   const handleSubmit = useCallback(
     async (e: FormEvent) => {
@@ -45,6 +47,8 @@ const SignIn: React.FC = () => {
           title: 'Login Realizado com sucesso',
           description: `Seja bem vindo ao sistema`,
         });
+
+        history.push('/dashboard');
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationsErrors(err);
@@ -72,7 +76,7 @@ const SignIn: React.FC = () => {
         }
       }
     },
-    [email, password, signIn, addToast],
+    [email, password, signIn, addToast, history],
   );
 
   return (
@@ -102,7 +106,7 @@ const SignIn: React.FC = () => {
             />
             <button type="submit">Entrar</button>
             Esqueci minha senha?
-            <a href="/"> Recuperar Senha</a>
+            <Link to="/"> Recuperar Senha</Link>
           </form>
 
           <Link to="/signup">

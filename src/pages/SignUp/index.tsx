@@ -1,18 +1,23 @@
-import React, { FormEvent, useCallback, useRef, useState } from 'react';
+import React, { FormEvent, useCallback, useState } from 'react';
 import { FiLock, FiMail, FiHome, FiUser } from 'react-icons/fi';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import * as Yup from 'yup';
 import getValidationsErrors from '../../utils/getValidationErrors';
 import logoImg from '../../assets/logo.svg';
 import Input from '../../components/Input';
+import { useToast } from '../../hooks/ToastContext';
 
 import { Background, Container, Content } from './styles';
+import api from '../../services/api';
 
 const SignIn: React.FC = () => {
   const [name, setName] = useState('');
   const [institution, setInstitution] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
+
+  const { addToast } = useToast();
+  const history = useHistory();
 
   const handleSubmit = useCallback(
     async (e: FormEvent) => {
@@ -38,23 +43,55 @@ const SignIn: React.FC = () => {
         await Schema.validate(data, {
           abortEarly: false,
         });
-      } catch (err) {
-        const errors = getValidationsErrors(err);
 
-        if (errors) {
-          if (errors.name) {
-            console.log(errors.name);
+        await api.post('/users', {
+          name,
+          email,
+          password,
+          institution,
+        });
+
+        history.push('/');
+
+        addToast({
+          type: 'success',
+          title: 'Cadastro Realizado com sucesso',
+          description: 'Agora você já pode logar-se no sistema',
+        });
+      } catch (err) {
+        if (err instanceof Yup.ValidationError) {
+          const errors = getValidationsErrors(err);
+
+          if (errors) {
+            if (errors.email) {
+              addToast({
+                title: 'Preenchimento de campo obrigatório',
+                description: `${errors.email}`,
+              });
+            }
+            if (errors.password) {
+              addToast({
+                title: 'Preenchimento de campo obrigatório',
+                description: `${errors.password}`,
+              });
+            }
+            if (errors.name) {
+              addToast({
+                title: 'Preenchimento de campo obrigatório',
+                description: `${errors.name}`,
+              });
+            }
           }
-          if (errors.email) {
-            console.log(errors.email);
-          }
-          if (errors.password) {
-            console.log(errors.password);
-          }
+        } else {
+          addToast({
+            type: 'error',
+            title: 'Erro na autenticação',
+            description: 'Ocorreu um erro cheque suas credenciais ',
+          });
         }
       }
     },
-    [email, institution, name, password],
+    [email, institution, name, password, addToast, history],
   );
 
   return (

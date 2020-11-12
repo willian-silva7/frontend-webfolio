@@ -1,4 +1,5 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback } from 'react';
+// import { useTransition } from 'react-spring';
 import {
   FiAlertCircle,
   FiCheckCircle,
@@ -22,6 +23,16 @@ interface ToastContainerProps {
 const ToastContainer: React.FC<ToastContainerProps> = ({ messages }) => {
   const { removeToast } = useToast();
 
+  // const messageWithTransitions = useTransition(
+  //   messages,
+  //   message => message.id,
+  //   {
+  //     from: { right: '-120%' },
+  //     enter: { right: '0%' },
+  //     leave: { right: '-120%' },
+  //   },
+  // );
+
   const HandleTimer = useCallback(
     id => {
       const timer = setTimeout(() => {
@@ -36,6 +47,26 @@ const ToastContainer: React.FC<ToastContainerProps> = ({ messages }) => {
   );
 
   return (
+    // <Container>
+    //   {messageWithTransitions.map(({ state, key, props, item }) => (
+    //     <Toast key={item.id} type={item.type}>
+    //       {item.type === 'success' ? <FiCheckCircle size={20} /> : null}
+    //       {item.type === 'error' ? <FiAlertCircle size={20} /> : null}
+    //       {!item.type && <FiInfo size={20} />}
+
+    //       <div>
+    //         <strong>{item.title}</strong>
+    //         <p>{item.description}</p>
+    //       </div>
+
+    //       <button onClick={() => removeToast(item.id)} type="button">
+    //         <FiXCircle size={18} />
+    //       </button>
+
+    //       {item.id && HandleTimer(item.id)}
+    //     </Toast>
+    //   ))}
+    // </Container>
     <Container>
       {messages.map(message => (
         <Toast key={message.id} type={message.type}>

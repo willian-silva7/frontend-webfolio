@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { shade } from 'polished';
 import signUpBackgroundImage from '../../assets/signup-background.svg';
 
@@ -7,6 +7,17 @@ export const Container = styled.div`
 
   display: flex;
   align-items: stretch;
+`;
+
+const appearFromLeft = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(5.37rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 `;
 
 export const Content = styled.div`
@@ -18,6 +29,8 @@ export const Content = styled.div`
 
   width: 100vw;
   max-width: 700px;
+
+  animation: ${appearFromLeft} 1s;
 
   form {
     margin: 4.3rem 0;
