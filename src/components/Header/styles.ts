@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.div``;
-
-export const Header = styled.header`
+export const Container = styled.header`
   padding: 1.44rem 0;
   background: var(--color-header);
 `;
@@ -38,5 +36,20 @@ export const Profile = styled.div`
     border: none;
     background: transparent;
     color: #000;
+  }
+
+  span {
+    margin-right: 1.72rem;
+    line-height: 2.58rem;
+    font-size: 1.72rem;
+    color: #000;
+  }
+
+  a {
+    text-decoration: none;
+
+    &:hover {
+      opacity: 0.8;
+    }
   }
 `;
