@@ -45,14 +45,14 @@ export const Container = styled.div<ContainerProps>`
       opacity: 1;
     `}
 
-  input {
+  select {
     flex: 1;
     background: transparent;
     border: 0;
     color: var(--color-form);
   }
 
-  input:focus {
+  select:focus {
     color: var(--color-onblur);
   }
 

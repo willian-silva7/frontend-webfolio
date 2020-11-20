@@ -45,18 +45,22 @@ export const Container = styled.div<ContainerProps>`
       opacity: 1;
     `}
 
-  input {
+  textarea {
     flex: 1;
     background: transparent;
     border: 0;
     color: var(--color-form);
+    height: 16rem;
+    resize: vertical;
+    padding: 1.2rem 1.6rem;
+    min-height: 8rem;
   }
 
-  input:focus {
+  textarea:focus {
     color: var(--color-onblur);
   }
 
   svg {
-    margin-right: 1.72rem;
+    margin-bottom: 11.72rem;
   }
 `;
