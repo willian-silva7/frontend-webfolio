@@ -33,9 +33,11 @@ const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 export const AuthProvider: React.FC = ({ children }) => {
   const [data, setData] = useState<AuthState>(() => {
     const token = localStorage.getItem('@WebFolio:token');
-    const user = localStorage.getItem('@WebFolio:token');
+    const user = localStorage.getItem('@WebFolio:user');
 
     if (token && user) {
+      api.defaults.headers.authorization = `Bearer ${token}`;
+
       return { token, user: JSON.parse(user) };
     }
 
@@ -51,21 +53,23 @@ export const AuthProvider: React.FC = ({ children }) => {
     const { token, user } = response.data;
 
     localStorage.setItem('@WebFolio:token', token);
-    localStorage.setItem('@WebFolio:token', JSON.stringify(user));
+    localStorage.setItem('@WebFolio:user', JSON.stringify(user));
+
+    api.defaults.headers.authorization = `Bearer ${token}`;
 
     setData({ token, user });
   }, []);
 
   const signOut = useCallback(() => {
     localStorage.removeItem('@WebFolio:token');
-    localStorage.removeItem('@WebFolio:token');
+    localStorage.removeItem('@WebFolio:user');
 
     setData({} as AuthState);
   }, []);
 
   const updateUser = useCallback(
     (user: User) => {
-      localStorage.setItem('@WebFolio:token', JSON.stringify(user));
+      localStorage.setItem('@WebFolio:user', JSON.stringify(user));
 
       setData({
         token: data.token,

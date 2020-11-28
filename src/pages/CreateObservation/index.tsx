@@ -4,7 +4,7 @@ import { FiBook, FiHome, FiInfo, FiUser } from 'react-icons/fi';
 import Header from '../../components/Header';
 import Input from '../../components/Input';
 import Select from '../../components/Select';
-import Textarea from '../../components/Textarea';
+// import Textarea from '../../components/Textarea';
 import { Container, Content } from './styles';
 
 const CreateObservation: React.FC = () => {

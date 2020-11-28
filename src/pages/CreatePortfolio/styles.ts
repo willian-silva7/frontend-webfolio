@@ -1,5 +1,5 @@
 import { shade } from 'polished';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 export const Container = styled.div`
   width: 100vw;
@@ -8,12 +8,26 @@ export const Container = styled.div`
   overflow-x: hidden;
 `;
 
+const appearFromLeft = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(-5.37rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
+
 export const Content = styled.div`
   background: var(--color-box-base);
   width: 100%;
-  max-width: 74rem;
+  max-width: 104rem;
   border-radius: 0.8rem;
   padding-top: 4.3rem;
+  margin: 1rem auto 0;
+
+  animation: ${appearFromLeft} 1s;
 
   fieldset {
     border: 0;
@@ -75,13 +89,23 @@ export const Content = styled.div`
   }
 
   @media (min-width: 700px) {
-    margin: 3.2rem auto 3.2rem;
+    margin: 3.2rem auto 0.2rem;
 
     fieldset {
       padding: 0 6.4rem;
 
       legend {
         font-size: 3.87rem;
+
+        button {
+          height: 3.87rem;
+          width: 20.96rem;
+          border: 0;
+          padding: 0;
+          margin-top: 0;
+          margin-bottom: 0;
+          background: var(--color-title);
+        }
       }
     }
   }

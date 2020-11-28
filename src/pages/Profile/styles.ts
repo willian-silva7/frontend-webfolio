@@ -57,6 +57,7 @@ export const AvatarInput = styled.div`
 
   @media (min-width: 700px) {
     width: 20rem;
+    margin-top: -3.44rem;
 
     img {
       width: 20rem;
@@ -84,6 +85,12 @@ export const Content = styled.div`
 
   width: 100vw;
   max-width: 700px;
+
+  background: var(--color-box-base);
+  width: 100%;
+  max-width: 85rem;
+  border-radius: 0.8rem;
+  padding-top: 4.3rem;
 
   animation: ${appearFromLeft} 1s;
 
@@ -133,7 +140,11 @@ export const Content = styled.div`
   }
 
   @media (min-width: 700px) {
+    margin: 3.2rem auto auto;
+
     form {
+      margin-bottom: 0;
+
       h1 {
         margin-bottom: 2.58rem;
       }

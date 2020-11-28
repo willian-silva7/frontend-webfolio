@@ -1,11 +1,12 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { FormEvent, useCallback, useState } from 'react';
-import { FiBook, FiHome, FiInfo, FiUser } from 'react-icons/fi';
+import { FiHome, FiInfo, FiUser } from 'react-icons/fi';
+import { useHistory } from 'react-router-dom';
 import * as Yup from 'yup';
 import Header from '../../components/Header';
 import Input from '../../components/Input';
-import Select from '../../components/Select';
-import Textarea from '../../components/Textarea';
+// import Select from '../../components/Select';
+// import Textarea from '../../components/Textarea';
 import { useToast } from '../../hooks/ToastContext';
 import api from '../../services/api';
 import getValidationErrors from '../../utils/getValidationErrors';
@@ -17,6 +18,8 @@ const CreatePortfolio: React.FC = () => {
   const [age, setAge] = useState('');
 
   const { addToast } = useToast();
+
+  const history = useHistory();
 
   const handleSubmit = useCallback(
     async (e: FormEvent) => {
@@ -44,6 +47,8 @@ const CreatePortfolio: React.FC = () => {
           age: parseInt(age, 10),
           classRoom,
         });
+
+        history.push('/');
 
         addToast({
           type: 'success',
@@ -82,10 +87,8 @@ const CreatePortfolio: React.FC = () => {
           });
         }
       }
-
-      console.log(data);
     },
-    [nameChildren, classRoom, age, addToast],
+    [nameChildren, classRoom, age, addToast, history],
   );
 
   return (
@@ -95,10 +98,7 @@ const CreatePortfolio: React.FC = () => {
         <Content>
           <form onSubmit={handleSubmit}>
             <fieldset>
-              <legend>
-                Cadastrar Novo Portifólio
-                <button type="button">Cadastrar novo portfolio</button>
-              </legend>
+              <legend>Cadastrar Novo Portifólio</legend>
 
               <label htmlFor="name" className="firstlabel">
                 Nome da Criança
@@ -145,7 +145,7 @@ const CreatePortfolio: React.FC = () => {
               </label>
               <Textarea name="test" placeholder="teste" icon={FiBook} /> */}
 
-              <label htmlFor="classroom" className="label">
+              {/* <label htmlFor="classroom" className="label">
                 Teste
               </label>
               <Select
@@ -158,7 +158,7 @@ const CreatePortfolio: React.FC = () => {
                   { value: 'Marta', label: 'Marta' },
                   { value: 'Elvio', label: 'Elvio' },
                 ]}
-              />
+              /> */}
 
               <button type="submit">Cadastrar Portfólio</button>
             </fieldset>

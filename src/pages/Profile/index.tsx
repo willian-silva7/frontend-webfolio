@@ -39,26 +39,19 @@ const Profile: React.FC = () => {
       };
 
       try {
-        console.log(name);
-        console.log(email);
-        console.log(institution);
-
-        if (institution === undefined) {
-          setInstitution('');
-        }
-
         const Schema = Yup.object().shape({
           name: Yup.string().required('Nome é obrigatório'),
           email: Yup.string()
             .required('E-mail é obrigatório')
             .email('Digite um email válido'),
-          // oldPassword: Yup.string(),
-          // newPassword: Yup.string().when('oldPassword', {
-          //   is: val => !!val.length,
-          //   then: Yup.string().required('Campo Obrigatório'),
-          //   otherwise: Yup.string(),
-          // }),
-          // // .min(6, 'precisa ter no mínimo 6 digitos'),
+          oldPassword: Yup.string(),
+          // newPassword: Yup.string()
+          //   .when('oldPassword', {
+          //     is: val => !!val.length,
+          //     then: Yup.string().required('Campo Obrigatório'),
+          //     otherwise: Yup.string(),
+          //   })
+          //   .min(6, 'precisa ter no mínimo 6 digitos'),
 
           // confirmPassword: Yup.string()
           //   .when('old_password', {
@@ -73,34 +66,30 @@ const Profile: React.FC = () => {
           institution: Yup.string(),
         });
 
-        console.log(Schema);
+        // console.log(Schema);
 
         await Schema.validate(data, {
           abortEarly: false,
         });
 
-        const formData = {
-          name,
-          email,
-          institution,
-          ...(oldPassword
-            ? {
-                old_password: oldPassword,
-                password: newPassword,
-                password_confirmation: confirmPassword,
-              }
-            : {}),
-        };
+        if (oldPassword === '') {
+          const response = await api.put('/profile', {
+            name,
+            email,
+          });
+          updateUser(response.data);
+        } else {
+          const response = await api.put('/profile', {
+            name,
+            email,
+            old_password: oldPassword,
+            password: newPassword,
+            password_confirmation: confirmPassword,
+          });
+          updateUser(response.data);
+        }
 
-        console.log(formData);
-
-        const response = await api.put('/profile', {
-          formData,
-        });
-
-        updateUser(response.data);
         history.push('/');
-
         addToast({
           type: 'success',
           title: 'Perfil atualizado com sucesso',
@@ -117,10 +106,22 @@ const Profile: React.FC = () => {
                 description: `${errors.email}`,
               });
             }
-            if (errors.password) {
+            if (errors.newPassword) {
               addToast({
                 title: 'Preenchimento de campo obrigatório',
-                description: `${errors.password}`,
+                description: `${errors.newPassword}`,
+              });
+            }
+            if (errors.confirmPassword) {
+              addToast({
+                title: 'Preenchimento de campo obrigatório',
+                description: `${errors.confirmPassword}`,
+              });
+            }
+            if (errors.oldPassword) {
+              addToast({
+                title: 'Preenchimento de campo obrigatório',
+                description: `${errors.oldPassword}`,
               });
             }
             if (errors.name) {
