@@ -1,30 +1,43 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { FormEvent, useCallback, useState } from 'react';
-import { FiBook, FiHome, FiInfo, FiUser } from 'react-icons/fi';
+import { FiBook, FiBookOpen, FiInfo } from 'react-icons/fi';
+import { useHistory } from 'react-router-dom';
+import Dropzone from '../../components/Dropzone';
 import Header from '../../components/Header';
 import Input from '../../components/Input';
-import Select from '../../components/Select';
+// import Select from '../../components/Select';
+import Textarea from '../../components/Textarea';
+import api from '../../services/api';
 // import Textarea from '../../components/Textarea';
 import { Container, Content } from './styles';
 
 const CreateObservation: React.FC = () => {
-  const [nameChildren, setNameChildren] = useState('');
-  const [classRoom, setClassRoom] = useState('');
-  const [age, setAge] = useState('');
+  const [title, setTitle] = useState('');
+  const [notes, setNotes] = useState('');
+  const [description, setDescription] = useState('');
+  const [selectedFiles, setSelectedFiles] = useState<File>();
+
+  const history = useHistory();
 
   const handleSubmit = useCallback(
     async (e: FormEvent) => {
       e.preventDefault();
 
-      const data = {
-        nameChildren,
-        classRoom,
-        age: parseInt(age, 10),
-      };
+      const data = new FormData();
 
-      console.log(data);
+      data.append('title', title);
+      data.append('notes', notes);
+      data.append('description', description);
+
+      if (selectedFiles) {
+        data.append('files', selectedFiles);
+      }
+
+      await api.post('/portfolio/5fbc54e41ac8ae2cb4690117/observation', data);
+
+      history.push('/');
     },
-    [nameChildren, classRoom, age],
+    [title, notes, description, selectedFiles, history],
   );
 
   return (
@@ -36,39 +49,39 @@ const CreateObservation: React.FC = () => {
             <fieldset>
               <legend>Cadastrar Nova Observação</legend>
 
-              <label htmlFor="name" className="firstlabel">
-                Nome da Criança
+              <label htmlFor="title" className="firstlabel">
+                Título da Observação
               </label>
               <Input
-                name="name"
-                placeholder="Digite aqui o nome da criança"
-                icon={FiUser}
+                name="title"
+                placeholder="Digite aqui o título da observação"
+                icon={FiBook}
                 onChange={e => {
-                  setNameChildren(e.target.value);
+                  setTitle(e.target.value);
                 }}
               />
 
-              <label htmlFor="age" className="label">
-                Idade
+              <label htmlFor="description" className="label">
+                Descrição da Observação
               </label>
-              <Input
-                name="age"
-                placeholder="Digite aqui a idade da criança"
+              <Textarea
+                name="description"
+                placeholder="Digite aqui a descrição da observação"
                 icon={FiInfo}
                 onChange={e => {
-                  setAge(e.target.value);
+                  setDescription(e.target.value);
                 }}
               />
 
-              <label htmlFor="classroom" className="label">
-                Turma/Classe
+              <label htmlFor="notes" className="label">
+                Notas
               </label>
-              <Input
-                name="classroom"
-                placeholder="Digite aqui a Turma ou Classe da criança"
-                icon={FiHome}
+              <Textarea
+                name="notes"
+                placeholder="Digite aqui uma nota específica sobre a criança"
+                icon={FiBookOpen}
                 onChange={e => {
-                  setClassRoom(e.target.value);
+                  setNotes(e.target.value);
                 }}
               />
 
@@ -81,10 +94,10 @@ const CreateObservation: React.FC = () => {
               </label>
               <Textarea name="test" placeholder="teste" icon={FiBook} /> */}
 
-              <label htmlFor="classroom" className="label">
-                Teste
+              <label htmlFor="files" className="label">
+                Arquivos
               </label>
-              <Select name="test" placeholder="teste" icon={FiBook} />
+              <Dropzone onFileUpload={setSelectedFiles} />
 
               <button type="submit">Cadastrar Portfólio</button>
             </fieldset>

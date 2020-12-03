@@ -52,8 +52,8 @@ const CreatePortfolio: React.FC = () => {
 
         addToast({
           type: 'success',
-          title: 'Cadastro Realizado com sucesso',
-          description: 'Agora você já pode logar-se no sistema',
+          title: 'Portfólio criado com sucesso',
+          description: 'Agora você já pode criar uma observação',
         });
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
@@ -135,30 +135,6 @@ const CreatePortfolio: React.FC = () => {
                   setClassRoom(e.target.value);
                 }}
               />
-
-              {/* <label htmlFor="classroom" className="label">
-                Teste
-              </label>
-              <Textarea name="test" placeholder="teste" icon={FiBook} />
-              <label htmlFor="classroom" className="label">
-                Teste
-              </label>
-              <Textarea name="test" placeholder="teste" icon={FiBook} /> */}
-
-              {/* <label htmlFor="classroom" className="label">
-                Teste
-              </label>
-              <Select
-                name="test"
-                placeholder="teste"
-                icon={FiBook}
-                options={[
-                  { value: 'Willian', label: 'Willian' },
-                  { value: 'Nathalia', label: 'Nathalia' },
-                  { value: 'Marta', label: 'Marta' },
-                  { value: 'Elvio', label: 'Elvio' },
-                ]}
-              /> */}
 
               <button type="submit">Cadastrar Portfólio</button>
             </fieldset>
