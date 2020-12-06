@@ -1,32 +1,60 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { FormEvent, useCallback, useState } from 'react';
+import React, { FormEvent, useCallback, useEffect, useState } from 'react';
 import { FiBook, FiBookOpen, FiInfo } from 'react-icons/fi';
 import { useHistory, useRouteMatch } from 'react-router-dom';
 import Dropzone from '../../components/Dropzone';
 import Header from '../../components/Header';
 import Input from '../../components/Input';
-// import Select from '../../components/Select';
 import Textarea from '../../components/Textarea';
 import api from '../../services/api';
-// import Textarea from '../../components/Textarea';
 import { useToast } from '../../hooks/ToastContext';
 import { Container, Content } from './styles';
 
-interface PortfolioParams {
+interface ObservationParams {
+  observation: string;
   portfolio: string;
 }
 
-const CreateObservation: React.FC = () => {
+interface Observation {
+  _id: string;
+  title: string;
+  description: string;
+  notes: string;
+  files: Array<{
+    _id: string;
+    name: string;
+    url: string;
+    type: string;
+  }>;
+}
+
+const UpdateObservation: React.FC = () => {
+  const [observation, setObservation] = useState<Observation>();
+  const { params } = useRouteMatch<ObservationParams>();
+
   const [title, setTitle] = useState('');
   const [notes, setNotes] = useState('');
   const [description, setDescription] = useState('');
-  const [selectedFiles, setSelectedFiles] = useState<File[]>();
 
-  const { params } = useRouteMatch<PortfolioParams>();
+  const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
 
   const { addToast } = useToast();
 
   const history = useHistory();
+
+  useEffect(() => {
+    api.get<Observation>(`observation/${params.observation}`).then(response => {
+      setObservation(response.data);
+      setTitle(`${observation?.title}`);
+      setNotes(`${observation?.notes}`);
+      setDescription(`${observation?.description}`);
+    });
+  }, [
+    params.observation,
+    observation?.title,
+    observation?.notes,
+    observation?.description,
+  ]);
 
   const handleSubmit = useCallback(
     async (e: FormEvent) => {
@@ -44,7 +72,10 @@ const CreateObservation: React.FC = () => {
         });
       }
 
-      await api.post(`/portfolio/${params.portfolio}/observation`, data);
+      await api.put(
+        `/observation/${params.portfolio}/${params.observation}`,
+        data,
+      );
 
       history.push(`/portfolio/${params.portfolio}`);
 
@@ -52,18 +83,10 @@ const CreateObservation: React.FC = () => {
         type: 'success',
         title: 'Observação criada com sucesso',
         description:
-          'Agora está observação já pode ser vista no Portfolio da criança',
+          'Agora está observação já pode ser vista no observation da criança',
       });
     },
-    [
-      title,
-      notes,
-      description,
-      selectedFiles,
-      history,
-      addToast,
-      params.portfolio,
-    ],
+    [title, notes, description, selectedFiles, history, addToast, params],
   );
 
   return (
@@ -73,7 +96,7 @@ const CreateObservation: React.FC = () => {
         <Content>
           <form onSubmit={handleSubmit}>
             <fieldset>
-              <legend>Cadastrar Nova Observação</legend>
+              <legend>Alterar Observação</legend>
 
               <label htmlFor="title" className="firstlabel">
                 Título da Observação
@@ -81,6 +104,7 @@ const CreateObservation: React.FC = () => {
               <Input
                 name="title"
                 placeholder="Digite aqui o título da observação"
+                defaultValue={observation?.title}
                 icon={FiBook}
                 onChange={e => {
                   setTitle(e.target.value);
@@ -93,6 +117,7 @@ const CreateObservation: React.FC = () => {
               <Textarea
                 name="description"
                 placeholder="Digite aqui a descrição da observação"
+                defaultValue={observation?.description}
                 icon={FiInfo}
                 onChange={e => {
                   setDescription(e.target.value);
@@ -105,20 +130,12 @@ const CreateObservation: React.FC = () => {
               <Textarea
                 name="notes"
                 placeholder="Digite aqui uma nota específica sobre a criança"
+                defaultValue={observation?.notes}
                 icon={FiBookOpen}
                 onChange={e => {
                   setNotes(e.target.value);
                 }}
               />
-
-              {/* <label htmlFor="classroom" className="label">
-                Teste
-              </label>
-              <Textarea name="test" placeholder="teste" icon={FiBook} />
-              <label htmlFor="classroom" className="label">
-                Teste
-              </label>
-              <Textarea name="test" placeholder="teste" icon={FiBook} /> */}
 
               <label htmlFor="files" className="label">
                 Arquivos
@@ -134,4 +151,4 @@ const CreateObservation: React.FC = () => {
   );
 };
 
-export default CreateObservation;
+export default UpdateObservation;

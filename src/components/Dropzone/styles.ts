@@ -2,10 +2,10 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   .dropzone {
-    height: 200px;
+    height: 21.5rem;
     background: none;
-    border-radius: 10px;
-    border: 4px dashed var(--color-form);
+    border-radius: 1.07rem;
+    border: 0.43rem dashed var(--color-form);
     opacity: 0.55;
 
     display: flex;
@@ -21,9 +21,9 @@ export const Container = styled.div`
   }
 
   .dropzone p {
-    width: calc(100% - 60px);
-    height: calc(100% - 60px);
-    border-radius: 10px;
+    width: calc(100% - 6.45rem);
+    height: calc(100% - 6.45rem);
+    border-radius: 1.07rem;
 
     display: flex;
     flex-direction: column;
@@ -34,8 +34,8 @@ export const Container = styled.div`
 
   .dropzone p svg {
     color: var(--color-title);
-    width: 24px;
-    height: 24px;
-    margin-bottom: 8px;
+    width: 2.58rem;
+    height: 2.58rem;
+    margin-bottom: 0.86rem;
   }
 `;

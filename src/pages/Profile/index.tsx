@@ -76,6 +76,7 @@ const Profile: React.FC = () => {
           const response = await api.put('/profile', {
             name,
             email,
+            institution,
           });
           updateUser(response.data);
         } else {

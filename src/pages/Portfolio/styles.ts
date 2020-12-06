@@ -116,135 +116,88 @@ export const Title = styled.div`
   }
 `;
 
-export const Search = styled.div`
+export const Subtitle = styled.div`
   border: 0;
   padding: 0 2.4rem;
   width: 100%;
   display: flex;
+  margin-bottom: 1.72rem;
 
   label {
     font-size: 2.58rem;
-    font-weight: 400;
+    font-weight: 300;
   }
 
-  input {
-    width: 100%;
-    background: var(--color-background);
-    border: 0;
-
-    padding-left: 1.72rem;
-    color: var(--color-text-in-input);
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.5rem;
+  label + label {
+    margin-left: 2.58rem;
   }
 
   @media (min-width: 700px) {
     margin-top: -2rem;
-
-    input {
-      width: 81.4%;
-      margin-left: 1.07rem;
-      font-size: 1.93rem;
-    }
   }
 `;
 
-export const TableContainer = styled.div`
-  table {
-    margin-top: 0.43rem;
-    padding: 0 1.4rem;
-    border-spacing: 0 0.86rem;
+export const Card = styled.div`
+  background-color: var(--color-portfolio);
+  /* height: 51.61rem; */
+  padding: 0 2.4rem;
+  margin-left: 2.4rem;
+  margin-bottom: 1.72rem;
+  width: 88%;
 
-    th {
-      color: #969cb3;
-      font-weight: 600;
-      padding: 2.15rem 1.44rem;
-      text-align: left;
-      font-size: 1.8rem;
-      line-height: 2.58rem;
-    }
+  border-radius: 0.8rem;
+  color: var(--color-box-base);
 
-    td {
-      background-color: var(--color-portfolio);
-      padding: 2.15rem 1.44rem;
-      font-weight: 600;
+  display: block;
+  align-items: flex-start;
+  justify-content: center;
+  padding-bottom: 1.72rem;
 
-      color: var(--color-box-base);
-      text-align: left;
-      border: 0;
-
-      font-size: 1.72rem;
-    }
-
-    a {
-      text-decoration: none;
-      margin-right: 0.9rem;
-    }
-
-    svg {
-      width: 2rem;
-      height: 2rem;
-      margin-left: 1.5rem;
-      display: block;
-      color: var(--color-box-base);
-    }
-
-    svg + svg {
-      margin-top: 0.9rem;
-    }
-
-    td:first-child {
-      border-radius: 0.86rem 0 0 0.86rem;
-    }
-
-    td:last-child {
-      border-radius: 0 0.86rem 0.86rem 0;
-    }
+  p {
+    margin-top: 0.86rem;
+    font-size: 2.58rem;
+    font-weight: 400;
   }
 
   @media (min-width: 700px) {
-    table {
-      width: 100%;
-      padding: 0 2.4rem;
+    width: 96%;
+  }
+`;
 
-      th {
-        padding: 2.15rem 3.44rem;
-      }
+export const PortfolioTitle = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-      td {
-        padding: 2.15rem 3.44rem;
+  h3 {
+    padding-top: 1.72rem;
+    font-size: 2.58rem;
+    font-weight: 600;
+  }
+`;
 
-        font-size: 1.72rem;
-      }
+export const PortfolioIcons = styled.div`
+  padding-top: 1.72rem;
 
-      .last-column {
-        text-align: end;
-      }
+  button {
+    border: none;
+    background: transparent;
+    color: var(--color-box-base);
+    margin-right: 0.86rem;
+  }
 
-      .last-icon {
-        margin-right: -1rem;
-      }
+  a {
+    text-decoration: none;
+    color: var(--color-box-base);
+  }
+`;
 
-      a {
-        text-decoration: none;
-        margin-right: 0.9rem;
-      }
+export const Files = styled.div`
+  margin-top: 0.86rem;
+  display: flex;
 
-      svg {
-        width: 1.8rem;
-        height: 1.8rem;
-        display: inline;
-        margin-left: 0;
-        color: var(--color-box-base);
-      }
-
-      svg + svg {
-        margin-left: 0.9rem;
-        margin-top: 0;
-      }
-    }
+  img {
+    width: 19.35rem;
+    height: 19.35rem;
   }
 `;

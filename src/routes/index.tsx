@@ -10,6 +10,8 @@ import ResetPassword from '../pages/ResetPassword';
 import Profile from '../pages/Profile';
 import CreatePortfolio from '../pages/CreatePortfolio';
 import CreateObservation from '../pages/CreateObservation';
+import Portfolio from '../pages/Portfolio';
+import UpdateObservation from '../pages/UpdateObservation';
 
 const Routes: React.FC = () => {
   return (
@@ -23,10 +25,16 @@ const Routes: React.FC = () => {
         <Route path="/profile" component={Profile} isPrivate />
         <Route path="/createportfolio" component={CreatePortfolio} isPrivate />
         <Route
-          path="/createobservation"
+          path="/createobservation/:portfolio"
           component={CreateObservation}
           isPrivate
         />
+        <Route
+          path="/updateobservation/:portfolio/:observation"
+          component={UpdateObservation}
+          isPrivate
+        />
+        <Route path="/portfolio/:portfolio+" component={Portfolio} isPrivate />
         <Route path="/dashboard" component={Dashboard} isPrivate />
       </Switch>
     </BrowserRouter>

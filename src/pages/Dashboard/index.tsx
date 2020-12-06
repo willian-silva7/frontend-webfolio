@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect, useState } from 'react';
 import { FiEdit, FiEye, FiPlus, FiUserPlus } from 'react-icons/fi';
@@ -8,7 +9,7 @@ import api from '../../services/api';
 import { Container, Content, Title, Search, TableContainer } from './styles';
 
 interface PortfoliosProps {
-  id: string;
+  _id: string;
   nameChildren: string;
   classRoom: string;
   age: number;
@@ -56,13 +57,17 @@ const Dashboard: React.FC = () => {
 
             <tbody>
               {portfolios.map(portfolio => (
-                <tr key={portfolio.id}>
+                <tr key={portfolio._id}>
                   <td className="name">{portfolio.nameChildren}</td>
                   <td className="classroom">{portfolio.classRoom}</td>
                   <td className="age">{portfolio.age}</td>
                   <td className="last-column">
-                    <FiEdit />
-                    <FiEye />
+                    <Link to="/">
+                      <FiEdit />
+                    </Link>
+                    <Link to={`/portfolio/${portfolio._id}`}>
+                      <FiEye />
+                    </Link>
                     <FiUserPlus className="last-icon" />
                   </td>
                 </tr>
