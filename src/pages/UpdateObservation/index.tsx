@@ -142,7 +142,7 @@ const UpdateObservation: React.FC = () => {
               </label>
               <Dropzone onFileUpload={setSelectedFiles} />
 
-              <button type="submit">Cadastrar Portfólio</button>
+              <button type="submit">Confirmar Alterações</button>
             </fieldset>
           </form>
         </Content>

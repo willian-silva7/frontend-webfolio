@@ -62,7 +62,7 @@ const Dashboard: React.FC = () => {
                   <td className="classroom">{portfolio.classRoom}</td>
                   <td className="age">{portfolio.age}</td>
                   <td className="last-column">
-                    <Link to="/">
+                    <Link to={`/updateportfolio/${portfolio._id}`}>
                       <FiEdit />
                     </Link>
                     <Link to={`/portfolio/${portfolio._id}`}>

@@ -12,6 +12,7 @@ import CreatePortfolio from '../pages/CreatePortfolio';
 import CreateObservation from '../pages/CreateObservation';
 import Portfolio from '../pages/Portfolio';
 import UpdateObservation from '../pages/UpdateObservation';
+import UpdatePortfolio from '../pages/UpdatePortfolio';
 
 const Routes: React.FC = () => {
   return (
@@ -32,6 +33,11 @@ const Routes: React.FC = () => {
         <Route
           path="/updateobservation/:portfolio/:observation"
           component={UpdateObservation}
+          isPrivate
+        />
+        <Route
+          path="/updateportfolio/:portfolio"
+          component={UpdatePortfolio}
           isPrivate
         />
         <Route path="/portfolio/:portfolio+" component={Portfolio} isPrivate />

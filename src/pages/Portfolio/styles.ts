@@ -21,6 +21,7 @@ export const Content = styled.div`
   border-radius: 0.8rem;
   padding-top: 4.3rem;
   margin: 1rem auto 0;
+  padding-bottom: 1.3rem;
 
   animation: ${appearFromLeft} 1s;
 
@@ -194,6 +195,7 @@ export const PortfolioIcons = styled.div`
 
 export const Files = styled.div`
   margin-top: 0.86rem;
+
   display: flex;
 
   img {
