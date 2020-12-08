@@ -225,7 +225,8 @@ export const TableContainer = styled.div`
       }
 
       .last-icon {
-        margin-right: -1rem;
+        margin-right: -6rem;
+        cursor: pointer;
       }
 
       a {

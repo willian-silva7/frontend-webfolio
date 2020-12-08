@@ -9,15 +9,13 @@ import React, {
   useEffect,
   useState,
 } from 'react';
-import { FiBook, FiBookOpen, FiInfo, FiUser } from 'react-icons/fi';
-import { useHistory, useRouteMatch } from 'react-router-dom';
+import { FiBook, FiBookOpen, FiInfo } from 'react-icons/fi';
+import { useHistory } from 'react-router-dom';
 import Dropzone from '../../components/Dropzone';
 import Header from '../../components/Header';
 import Input from '../../components/Input';
-// import Select from '../../components/Select';
 import Textarea from '../../components/Textarea';
 import api from '../../services/api';
-// import Textarea from '../../components/Textarea';
 import { useToast } from '../../hooks/ToastContext';
 import { Container, Content, ListItem } from './styles';
 import Select from '../../components/Select';
@@ -135,8 +133,6 @@ const CreateObservationToClass: React.FC = () => {
     },
     [selectedPortfolios],
   );
-
-  console.log(selectedPortfolios);
 
   return (
     <>

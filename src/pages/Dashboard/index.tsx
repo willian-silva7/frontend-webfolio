@@ -3,7 +3,6 @@
 import React, { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import { FiEdit, FiEye, FiHome, FiPlus, FiUserPlus } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
-// import { Link } from 'react-router-dom';
 import Header from '../../components/Header';
 import api from '../../services/api';
 import {
@@ -25,6 +24,7 @@ interface PortfoliosProps {
 const Dashboard: React.FC = () => {
   const [portfolios, setPortifolios] = useState<PortfoliosProps[]>([]);
   const [searchPortfolio, setSearchPortfolio] = useState('');
+  const [addUser, setAddUser] = useState(false);
 
   useEffect(() => {
     api.get('/portfolio').then(response => {
@@ -42,6 +42,10 @@ const Dashboard: React.FC = () => {
 
   const handleChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     setSearchPortfolio(event.target.value);
+  }, []);
+
+  const handleAddGuest = useCallback(() => {
+    setAddUser(true);
   }, []);
 
   return (
@@ -105,7 +109,9 @@ const Dashboard: React.FC = () => {
                     <Link to={`/portfolio/${portfolio._id}`}>
                       <FiEye />
                     </Link>
-                    <FiUserPlus className="last-icon" />
+                    <Link to={`/inviteparent/${portfolio._id}`}>
+                      <FiUserPlus className="last-icon" />
+                    </Link>
                   </td>
                 </tr>
               ))}

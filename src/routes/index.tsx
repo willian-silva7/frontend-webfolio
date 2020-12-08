@@ -14,6 +14,7 @@ import CreateObservationToClass from '../pages/CreateObservationToClass';
 import Portfolio from '../pages/Portfolio';
 import UpdateObservation from '../pages/UpdateObservation';
 import UpdatePortfolio from '../pages/UpdatePortfolio';
+import InviteParent from '../pages/InviteParent';
 
 const Routes: React.FC = () => {
   return (
@@ -47,6 +48,11 @@ const Routes: React.FC = () => {
           isPrivate
         />
         <Route path="/portfolio/:portfolio+" component={Portfolio} isPrivate />
+        <Route
+          path="/inviteparent/:portfolio+"
+          component={InviteParent}
+          isPrivate
+        />
         <Route path="/dashboard" component={Dashboard} isPrivate />
       </Switch>
     </BrowserRouter>
