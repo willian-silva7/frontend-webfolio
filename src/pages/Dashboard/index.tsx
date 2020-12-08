@@ -1,6 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useEffect, useState } from 'react';
+import React, { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import { FiEdit, FiEye, FiHome, FiPlus, FiUserPlus } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 // import { Link } from 'react-router-dom';
@@ -24,11 +24,24 @@ interface PortfoliosProps {
 
 const Dashboard: React.FC = () => {
   const [portfolios, setPortifolios] = useState<PortfoliosProps[]>([]);
+  const [searchPortfolio, setSearchPortfolio] = useState('');
 
   useEffect(() => {
     api.get('/portfolio').then(response => {
       setPortifolios(response.data);
     });
+  }, []);
+
+  const results = !searchPortfolio
+    ? portfolios
+    : portfolios.filter(portfolio =>
+        portfolio.nameChildren
+          .toLowerCase()
+          .includes(searchPortfolio.toLocaleLowerCase()),
+      );
+
+  const handleChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+    setSearchPortfolio(event.target.value);
   }, []);
 
   return (
@@ -62,8 +75,11 @@ const Dashboard: React.FC = () => {
         <Search>
           <label htmlFor="name">Buscar Portfólios:</label>
           <input
+            type="text"
             name="name"
             placeholder="Digite aqui para pesquisar portifólio"
+            onChange={handleChange}
+            defaultValue={searchPortfolio}
           />
         </Search>
 
@@ -77,7 +93,7 @@ const Dashboard: React.FC = () => {
             </thead>
 
             <tbody>
-              {portfolios.map(portfolio => (
+              {results.map(portfolio => (
                 <tr key={portfolio._id}>
                   <td className="name">{portfolio.nameChildren}</td>
                   <td className="classroom">{portfolio.classRoom}</td>
