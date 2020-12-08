@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import React, {
   SelectHTMLAttributes,
   useState,
@@ -7,10 +8,15 @@ import React, {
 import { IconBaseProps } from 'react-icons';
 import { Container } from './styles';
 
+interface ClassRoomProps {
+  name: string;
+  _id: string;
+}
+
 interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   name: string;
   icon?: React.ComponentType<IconBaseProps>;
-  options?: Array<{ value: string; label: string }>;
+  options?: Array<ClassRoomProps>;
 }
 
 const Select: React.FC<SelectProps> = ({ icon: Icon, options, ...rest }) => {
@@ -53,8 +59,8 @@ const Select: React.FC<SelectProps> = ({ icon: Icon, options, ...rest }) => {
         </option>
         {options?.map(option => {
           return (
-            <option key={option.value} value={option.value}>
-              {option.label}
+            <option key={option._id} value={option._id}>
+              {option.name}
             </option>
           );
         })}

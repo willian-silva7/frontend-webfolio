@@ -145,7 +145,7 @@ export const Search = styled.div`
     margin-top: -2rem;
 
     input {
-      width: 81.4%;
+      width: 80.8%;
       margin-left: 1.07rem;
       font-size: 1.93rem;
     }
@@ -244,6 +244,114 @@ export const TableContainer = styled.div`
       svg + svg {
         margin-left: 0.9rem;
         margin-top: 0;
+      }
+    }
+  }
+`;
+
+export const SubTitle = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -5.9rem;
+  margin-left: 24rem;
+  margin-bottom: 2.58rem;
+
+  div {
+    box-sizing: 1rem;
+    background: var(--color-form);
+    border-radius: 1.07rem;
+    border-radius: 0.86rem 0.86rem 0.86rem 0.86rem;
+    transition: all 0.2s;
+
+    padding: 0.72rem;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+
+    svg {
+      color: var(--color-box-base);
+    }
+  }
+
+  label {
+    display: none;
+  }
+
+  @media (min-width: 700px) {
+    font-size: 1.72rem;
+    border: 0;
+    padding: 0 2.4rem;
+
+    font-weight: 700;
+    color: var(--color-text-title);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    margin-top: -9.8rem;
+    margin-left: 0;
+    margin-bottom: 0;
+
+    padding-bottom: 1.6rem;
+    border-bottom: 1px solid #fff;
+
+    a {
+      div {
+        box-sizing: 2.15rem;
+        background: var(--color-form);
+        border-radius: 1.07rem;
+        border-radius: 0.86rem 0.86rem 0.86rem 0.86rem;
+        transition: all 0.2s;
+
+        padding: 0.72rem;
+        width: 100%;
+
+        display: flex;
+        align-items: center;
+
+        svg {
+          color: var(--color-box-base);
+        }
+      }
+
+      @media (min-width: 700px) {
+        width: 31%;
+        height: 5.6rem;
+
+        background: var(--color-form);
+        color: #fff;
+
+        border-radius: 1.07rem;
+        border: 0;
+        padding: 0 1.72rem;
+        font-weight: 600;
+        transition: background-color 0.2s;
+        margin-bottom: 2.58rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        text-decoration: none;
+
+        &:hover {
+          background: ${shade(0.2, '#ff69b4')};
+        }
+
+        svg {
+          display: none;
+        }
+
+        label {
+          display: inline;
+        }
+
+        div {
+          display: none;
+        }
       }
     }
   }

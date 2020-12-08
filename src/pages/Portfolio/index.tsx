@@ -58,14 +58,10 @@ const Portfolio: React.FC = () => {
     });
   }, [params.portfolio]);
 
-  const handleSubmit = useCallback(
-    async (observation: Observation) => {
-      api.delete(
-        `portfolio/${params.portfolio}/observation/${observation._id}`,
-      );
-      const observationIndex = observations.findIndex(
-        item => item._id === observation._id,
-      );
+  const handleDelete = useCallback(
+    async (id: string) => {
+      await api.delete(`portfolio/${params.portfolio}/observation/${id}`);
+      const observationIndex = observations.findIndex(item => item._id === id);
       observations.splice(observationIndex, 1);
       setObservations([...observations]);
     },
@@ -103,7 +99,7 @@ const Portfolio: React.FC = () => {
                 <PortfolioIcons>
                   <button
                     type="button"
-                    onClick={() => handleSubmit(observation)}
+                    onClick={() => handleDelete(observation._id)}
                   >
                     <FiX size={20} />
                   </button>
@@ -121,11 +117,23 @@ const Portfolio: React.FC = () => {
               <Files>
                 {observation.files.map(file => {
                   if (file.type === 'image') {
-                    return <img src={file.url} alt={file.name} />;
+                    return (
+                      <img
+                        src={file.url}
+                        alt={file.name}
+                        className="items-grid"
+                      />
+                    );
                   }
                   if (file.type === 'video') {
                     if (file.name.indexOf('ogg') > -1) {
-                      return <AudioPlayer src={file.url} controls />;
+                      return (
+                        <AudioPlayer
+                          src={file.url}
+                          controls
+                          className="items-grid"
+                        />
+                      );
                     }
                     return (
                       <VideoPlayer
@@ -133,6 +141,7 @@ const Portfolio: React.FC = () => {
                         controls
                         width={180}
                         height={180}
+                        className="items-grid"
                       />
                     );
                   }

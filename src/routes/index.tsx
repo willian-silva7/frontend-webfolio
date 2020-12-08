@@ -10,6 +10,7 @@ import ResetPassword from '../pages/ResetPassword';
 import Profile from '../pages/Profile';
 import CreatePortfolio from '../pages/CreatePortfolio';
 import CreateObservation from '../pages/CreateObservation';
+import CreateObservationToClass from '../pages/CreateObservationToClass';
 import Portfolio from '../pages/Portfolio';
 import UpdateObservation from '../pages/UpdateObservation';
 import UpdatePortfolio from '../pages/UpdatePortfolio';
@@ -25,6 +26,11 @@ const Routes: React.FC = () => {
 
         <Route path="/profile" component={Profile} isPrivate />
         <Route path="/createportfolio" component={CreatePortfolio} isPrivate />
+        <Route
+          path="/createobservationtoclass"
+          component={CreateObservationToClass}
+          isPrivate
+        />
         <Route
           path="/createobservation/:portfolio"
           component={CreateObservation}

@@ -196,10 +196,26 @@ export const PortfolioIcons = styled.div`
 export const Files = styled.div`
   margin-top: 0.86rem;
 
-  display: flex;
+  display: block;
+  align-items: center;
+  justify-content: center;
 
   img {
     width: 19.35rem;
     height: 19.35rem;
+  }
+
+  @media (min-width: 700px) {
+    margin-top: 0.86rem;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.72rem;
+    list-style: none;
+
+    img {
+      width: 19.35rem;
+      height: 19.35rem;
+    }
   }
 `;

@@ -111,15 +111,6 @@ const CreateObservation: React.FC = () => {
                 }}
               />
 
-              {/* <label htmlFor="classroom" className="label">
-                Teste
-              </label>
-              <Textarea name="test" placeholder="teste" icon={FiBook} />
-              <label htmlFor="classroom" className="label">
-                Teste
-              </label>
-              <Textarea name="test" placeholder="teste" icon={FiBook} /> */}
-
               <label htmlFor="files" className="label">
                 Arquivos
               </label>
