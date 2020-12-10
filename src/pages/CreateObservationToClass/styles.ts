@@ -1,11 +1,31 @@
 import { shade } from 'polished';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+const appearFromLeft = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(-5.37rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
 
 export const Container = styled.div`
   width: 100vw;
   height: 100vh;
 
   overflow-x: hidden;
+
+  .arrow-left-icon {
+    display: flex;
+    margin-top: 1rem;
+    margin-bottom: -2rem;
+    margin-left: 51rem;
+    color: var(--color-arrow-left);
+    animation: ${appearFromLeft} 1s;
+  }
 `;
 
 export const Content = styled.div`
@@ -14,6 +34,8 @@ export const Content = styled.div`
   max-width: 74rem;
   border-radius: 0.8rem;
   padding-top: 4.3rem;
+
+  animation: ${appearFromLeft} 1s;
 
   fieldset {
     border: 0;

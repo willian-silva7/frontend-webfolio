@@ -1,7 +1,14 @@
 import React, { ChangeEvent, FormEvent, useCallback, useState } from 'react';
 import * as Yup from 'yup';
-import { useHistory } from 'react-router-dom';
-import { FiCamera, FiHome, FiLock, FiMail, FiUser } from 'react-icons/fi';
+import { Link, useHistory } from 'react-router-dom';
+import {
+  FiArrowLeft,
+  FiCamera,
+  FiHome,
+  FiLock,
+  FiMail,
+  FiUser,
+} from 'react-icons/fi';
 
 import Header from '../../components/Header';
 import { useToast } from '../../hooks/ToastContext';
@@ -179,10 +186,14 @@ const Profile: React.FC = () => {
     <>
       <Container>
         <Header />
+        <Link to="/dashboard" className="arrow-left-icon">
+          <FiArrowLeft size={20} />
+        </Link>
         <Content>
           <AvatarInput>
             {user.avatar ? (
-              <img src={user.avatar} alt={user.name} />
+              // <img src={user.avatar} alt={user.name} />
+              <img src={userImg} alt="https://br.freepik.com/vetores/negocio" />
             ) : (
               <img src={userImg} alt="https://br.freepik.com/vetores/negocio" />
             )}

@@ -1,8 +1,6 @@
 import styled, { keyframes } from 'styled-components';
 import { shade } from 'polished';
 
-export const Container = styled.div``;
-
 const appearFromLeft = keyframes`
   from {
     opacity: 0;
@@ -11,6 +9,17 @@ const appearFromLeft = keyframes`
   to {
     opacity: 1;
     transform: translateX(0);
+  }
+`;
+
+export const Container = styled.div`
+  .arrow-left-icon {
+    display: flex;
+    margin-top: 1rem;
+    margin-bottom: -2rem;
+    margin-left: 45rem;
+    color: var(--color-arrow-left);
+    transition: background-color 0.2s;
   }
 `;
 

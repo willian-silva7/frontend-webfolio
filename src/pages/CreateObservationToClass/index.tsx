@@ -9,8 +9,8 @@ import React, {
   useEffect,
   useState,
 } from 'react';
-import { FiBook, FiBookOpen, FiInfo } from 'react-icons/fi';
-import { useHistory } from 'react-router-dom';
+import { FiArrowLeft, FiBook, FiBookOpen, FiInfo } from 'react-icons/fi';
+import { Link, useHistory } from 'react-router-dom';
 import Dropzone from '../../components/Dropzone';
 import Header from '../../components/Header';
 import Input from '../../components/Input';
@@ -138,6 +138,9 @@ const CreateObservationToClass: React.FC = () => {
     <>
       <Container>
         <Header />
+        <Link to="/dashboard" className="arrow-left-icon">
+          <FiArrowLeft size={20} />
+        </Link>
         <Content>
           <form onSubmit={handleSubmit}>
             <fieldset>

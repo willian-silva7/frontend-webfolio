@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { FormEvent, useCallback, useEffect, useState } from 'react';
-import { FiBook } from 'react-icons/fi';
-import { useHistory, useRouteMatch } from 'react-router-dom';
+import { FiArrowLeft, FiBook } from 'react-icons/fi';
+import { Link, useHistory, useRouteMatch } from 'react-router-dom';
 import Header from '../../components/Header';
 import Input from '../../components/Input';
 import api from '../../services/api';
@@ -55,6 +55,9 @@ const InviteParent: React.FC = () => {
     <>
       <Container>
         <Header />
+        <Link to="/dashboard" className="arrow-left-icon">
+          <FiArrowLeft size={20} />
+        </Link>
         <Content>
           <form onSubmit={handleSubmit}>
             <fieldset>

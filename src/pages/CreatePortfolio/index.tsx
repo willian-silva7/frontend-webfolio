@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { FormEvent, useCallback, useState } from 'react';
-import { FiHome, FiInfo, FiUser } from 'react-icons/fi';
-import { useHistory } from 'react-router-dom';
+import { FiArrowLeft, FiHome, FiInfo, FiUser } from 'react-icons/fi';
+import { Link, useHistory } from 'react-router-dom';
 import * as Yup from 'yup';
 import Header from '../../components/Header';
 import Input from '../../components/Input';
@@ -95,6 +95,9 @@ const CreatePortfolio: React.FC = () => {
     <>
       <Container>
         <Header />
+        <Link to="/dashboard" className="arrow-left-icon">
+          <FiArrowLeft size={20} />
+        </Link>
         <Content>
           <form onSubmit={handleSubmit}>
             <fieldset>

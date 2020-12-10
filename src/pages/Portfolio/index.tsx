@@ -2,7 +2,7 @@
 /* eslint-disable camelcase */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useCallback, useEffect, useState } from 'react';
-import { FiEdit, FiPlus, FiX } from 'react-icons/fi';
+import { FiArrowLeft, FiEdit, FiPlus, FiX } from 'react-icons/fi';
 import { Link, useRouteMatch } from 'react-router-dom';
 import AudioPlayer from 'react-audio-player';
 import VideoPlayer from 'react-player';
@@ -71,6 +71,9 @@ const Portfolio: React.FC = () => {
   return (
     <Container>
       <Header />
+      <Link to="/dashboard" className="arrow-left-icon">
+        <FiArrowLeft size={20} />
+      </Link>
       <Container>
         <Content>
           <Title>

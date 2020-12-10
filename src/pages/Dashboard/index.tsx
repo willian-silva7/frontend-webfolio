@@ -104,7 +104,7 @@ const Dashboard: React.FC = () => {
                   <td className="age">{portfolio.age}</td>
                   <td className="last-column">
                     <Link to={`/updateportfolio/${portfolio._id}`}>
-                      <FiEdit />
+                      <FiEdit className="first-icon" />
                     </Link>
                     <Link to={`/portfolio/${portfolio._id}`}>
                       <FiEye />

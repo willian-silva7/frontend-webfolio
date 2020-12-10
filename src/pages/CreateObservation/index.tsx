@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { FormEvent, useCallback, useState } from 'react';
-import { FiBook, FiBookOpen, FiInfo } from 'react-icons/fi';
-import { useHistory, useRouteMatch } from 'react-router-dom';
+import { FiArrowLeft, FiBook, FiBookOpen, FiInfo } from 'react-icons/fi';
+import { Link, useHistory, useRouteMatch } from 'react-router-dom';
 import Dropzone from '../../components/Dropzone';
 import Header from '../../components/Header';
 import Input from '../../components/Input';
@@ -70,6 +70,9 @@ const CreateObservation: React.FC = () => {
     <>
       <Container>
         <Header />
+        <Link to={`/portfolio/${params.portfolio}`} className="arrow-left-icon">
+          <FiArrowLeft size={20} />
+        </Link>
         <Content>
           <form onSubmit={handleSubmit}>
             <fieldset>

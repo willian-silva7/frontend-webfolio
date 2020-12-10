@@ -1,16 +1,25 @@
 import { shade } from 'polished';
 import styled, { keyframes } from 'styled-components';
 
-export const Container = styled.div``;
-
 const appearFromLeft = keyframes`
   from {
     opacity: 0;
-    transform: translateX(5.37rem);
+    transform: translateX(-5.37rem);
   }
   to {
     opacity: 1;
     transform: translateX(0);
+  }
+`;
+
+export const Container = styled.div`
+  .arrow-left-icon {
+    display: flex;
+    margin-top: 1rem;
+    margin-bottom: -2rem;
+    margin-left: 29rem;
+    color: var(--color-arrow-left);
+    animation: ${appearFromLeft} 1s;
   }
 `;
 

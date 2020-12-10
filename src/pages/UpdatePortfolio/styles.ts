@@ -1,13 +1,6 @@
 import { shade } from 'polished';
 import styled, { keyframes } from 'styled-components';
 
-export const Container = styled.div`
-  width: 100vw;
-  height: 100vh;
-
-  overflow-x: hidden;
-`;
-
 const appearFromLeft = keyframes`
   from {
     opacity: 0;
@@ -16,6 +9,22 @@ const appearFromLeft = keyframes`
   to {
     opacity: 1;
     transform: translateX(0);
+  }
+`;
+
+export const Container = styled.div`
+  width: 100vw;
+  height: 100vh;
+
+  overflow-x: hidden;
+
+  .arrow-left-icon {
+    display: flex;
+    margin-top: 1rem;
+    margin-bottom: -2rem;
+    margin-left: 37rem;
+    color: var(--color-arrow-left);
+    animation: ${appearFromLeft} 1s;
   }
 `;
 
