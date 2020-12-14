@@ -32,7 +32,10 @@ const Header: React.FC = () => {
           </button>
 
           {user.avatar ? (
-            <img src={user.avatar} alt={user.name} />
+            <img
+              src={`http://localhost:3333/files/${user.avatar}`}
+              alt={user.name}
+            />
           ) : (
             <img src={userImg} alt="https://br.freepik.com/vetores/negocio" />
           )}

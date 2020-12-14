@@ -166,6 +166,8 @@ const Profile: React.FC = () => {
       if (e.target.files) {
         const data = new FormData();
 
+        console.log(e.target.files);
+
         data.append('avatar', e.target.files[0]);
 
         await api.patch('/users/avatar', data).then(response => {
@@ -192,9 +194,12 @@ const Profile: React.FC = () => {
         <Content>
           <AvatarInput>
             {user.avatar ? (
-              // <img src={user.avatar} alt={user.name} />
-              <img src={userImg} alt="https://br.freepik.com/vetores/negocio" />
+              <img
+                src={`http://localhost:3333/files/${user.avatar}`}
+                alt={user.name}
+              />
             ) : (
+              // <img src={userImg} alt="https://br.freepik.com/vetores/negocio" />
               <img src={userImg} alt="https://br.freepik.com/vetores/negocio" />
             )}
 

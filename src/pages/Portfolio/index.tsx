@@ -71,6 +71,7 @@ const Portfolio: React.FC = () => {
   return (
     <Container>
       <Header />
+      <script src="path/to/lightbox.js" />
       <Link to="/dashboard" className="arrow-left-icon">
         <FiArrowLeft size={20} />
       </Link>
@@ -121,11 +122,17 @@ const Portfolio: React.FC = () => {
                 {observation.files.map(file => {
                   if (file.type === 'image') {
                     return (
-                      <img
-                        src={file.url}
-                        alt={file.name}
-                        className="items-grid"
-                      />
+                      <a
+                        href={file.url}
+                        data-lightbox="image-1"
+                        data-title={file.name}
+                      >
+                        <img
+                          src={file.url}
+                          alt={file.name}
+                          className="items-grid"
+                        />
+                      </a>
                     );
                   }
                   if (file.type === 'video') {

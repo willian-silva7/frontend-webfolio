@@ -5,8 +5,6 @@ import { Link, useHistory } from 'react-router-dom';
 import * as Yup from 'yup';
 import Header from '../../components/Header';
 import Input from '../../components/Input';
-// import Select from '../../components/Select';
-// import Textarea from '../../components/Textarea';
 import { useToast } from '../../hooks/ToastContext';
 import api from '../../services/api';
 import getValidationErrors from '../../utils/getValidationErrors';

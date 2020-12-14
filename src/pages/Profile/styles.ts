@@ -14,12 +14,18 @@ const appearFromLeft = keyframes`
 
 export const Container = styled.div`
   .arrow-left-icon {
-    display: flex;
-    margin-top: 1rem;
-    margin-bottom: -2rem;
-    margin-left: 45rem;
-    color: var(--color-arrow-left);
-    transition: background-color 0.2s;
+    display: none;
+  }
+
+  @media (min-width: 700px) {
+    .arrow-left-icon {
+      display: flex;
+      margin-top: 1rem;
+      margin-bottom: -2rem;
+      margin-left: 45rem;
+      color: var(--color-arrow-left);
+      animation: ${appearFromLeft} 1s;
+    }
   }
 `;
 
