@@ -90,6 +90,7 @@ const Profile: React.FC = () => {
           const response = await api.put('/profile', {
             name,
             email,
+            institution,
             old_password: oldPassword,
             password: newPassword,
             password_confirmation: confirmPassword,
@@ -166,8 +167,6 @@ const Profile: React.FC = () => {
       if (e.target.files) {
         const data = new FormData();
 
-        console.log(e.target.files);
-
         data.append('avatar', e.target.files[0]);
 
         await api.patch('/users/avatar', data).then(response => {
@@ -189,7 +188,10 @@ const Profile: React.FC = () => {
       <Container>
         <Header />
         <Link to="/dashboard" className="arrow-left-icon">
-          <FiArrowLeft size={20} />
+          <p>
+            <FiArrowLeft />
+            Voltar
+          </p>
         </Link>
         <Content>
           <AvatarInput>
@@ -199,7 +201,6 @@ const Profile: React.FC = () => {
                 alt={user.name}
               />
             ) : (
-              // <img src={userImg} alt="https://br.freepik.com/vetores/negocio" />
               <img src={userImg} alt="https://br.freepik.com/vetores/negocio" />
             )}
 

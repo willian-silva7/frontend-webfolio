@@ -26,6 +26,10 @@ export const Container = styled.div`
       color: var(--color-arrow-left);
       animation: ${appearFromLeft} 1s;
     }
+
+    svg {
+      margin-right: 0.86rem;
+    }
   }
 `;
 
@@ -169,9 +173,15 @@ export const Card = styled.div`
   justify-content: center;
   padding-bottom: 1.72rem;
 
+  h4 {
+    margin-top: 0.86rem;
+    font-size: 2.15rem;
+    font-weight: 600;
+  }
+
   p {
     margin-top: 0.86rem;
-    font-size: 2.58rem;
+    font-size: 2.15rem;
     font-weight: 400;
   }
 

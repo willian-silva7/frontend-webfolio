@@ -168,6 +168,9 @@ export const TableContainer = styled.div`
     }
 
     td {
+      a {
+        color: var(--color-box-base);
+      }
       background-color: var(--color-portfolio);
       padding: 2.15rem 1.44rem;
       font-weight: 600;

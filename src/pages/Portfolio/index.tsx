@@ -18,6 +18,7 @@ import {
   PortfolioIcons,
   Files,
 } from './styles';
+import { useAuth } from '../../hooks/AuthContext';
 
 interface Observation {
   _id: string;
@@ -46,10 +47,15 @@ interface PortfolioParams {
   portfolio: string;
 }
 
+interface UserProps {
+  _id: string;
+}
+
 const Portfolio: React.FC = () => {
   const [portfolioinfo, setPortfolioInfo] = useState<PortfolioProps>();
   const [observations, setObservations] = useState<Observation[]>([]);
   const { params } = useRouteMatch<PortfolioParams>();
+  const { user } = useAuth();
 
   useEffect(() => {
     api.get(`portfolio/${params.portfolio}`).then(response => {
@@ -73,7 +79,10 @@ const Portfolio: React.FC = () => {
       <Header />
       <script src="path/to/lightbox.js" />
       <Link to="/dashboard" className="arrow-left-icon">
-        <FiArrowLeft size={20} />
+        <p>
+          <FiArrowLeft />
+          Voltar
+        </p>
       </Link>
       <Container>
         <Content>
@@ -82,12 +91,14 @@ const Portfolio: React.FC = () => {
               Portifólio de
               {` ${portfolioinfo?.nameChildren}`}
             </h1>
-            <Link to={`/createobservation/${params.portfolio}`}>
-              <div>
-                <FiPlus size={20} />
-              </div>
-              <label>Criar Nova Observação</label>
-            </Link>
+            {user._id === portfolioinfo?.educator && (
+              <Link to={`/createobservation/${params.portfolio}`}>
+                <div>
+                  <FiPlus size={20} />
+                </div>
+                <label>Criar Nova Observação</label>
+              </Link>
+            )}
           </Title>
 
           <Subtitle>
@@ -100,22 +111,26 @@ const Portfolio: React.FC = () => {
             <Card key={observation._id}>
               <PortfolioTitle>
                 <h3>{observation.title}</h3>
-                <PortfolioIcons>
-                  <button
-                    type="button"
-                    onClick={() => handleDelete(observation._id)}
-                  >
-                    <FiX size={20} />
-                  </button>
+                {user._id === portfolioinfo?.educator && (
+                  <PortfolioIcons>
+                    <button
+                      type="button"
+                      onClick={() => handleDelete(observation._id)}
+                    >
+                      <FiX size={20} />
+                    </button>
 
-                  <Link
-                    to={`/updateobservation/${params.portfolio}/${observation._id}`}
-                  >
-                    <FiEdit size={20} />
-                  </Link>
-                </PortfolioIcons>
+                    <Link
+                      to={`/updateobservation/${params.portfolio}/${observation._id}`}
+                    >
+                      <FiEdit size={20} />
+                    </Link>
+                  </PortfolioIcons>
+                )}
               </PortfolioTitle>
+              {observation.description && <h4>Descrição da observação:</h4>}
               <p>{observation.description}</p>
+              {observation.notes && <h4>Notas/Avaliação:</h4>}
               <p>{observation.notes}</p>
 
               <Files>
@@ -123,6 +138,7 @@ const Portfolio: React.FC = () => {
                   if (file.type === 'image') {
                     return (
                       <a
+                        key={file._id}
                         href={file.url}
                         data-lightbox="image-1"
                         data-title={file.name}
@@ -139,6 +155,7 @@ const Portfolio: React.FC = () => {
                     if (file.name.indexOf('ogg') > -1) {
                       return (
                         <AudioPlayer
+                          key={file._id}
                           src={file.url}
                           controls
                           className="items-grid"
@@ -147,6 +164,7 @@ const Portfolio: React.FC = () => {
                     }
                     return (
                       <VideoPlayer
+                        key={file._id}
                         url={file.url}
                         controls
                         width={180}
@@ -155,7 +173,7 @@ const Portfolio: React.FC = () => {
                       />
                     );
                   }
-                  return <AudioPlayer src={file.url} controls />;
+                  return <AudioPlayer key={file._id} src={file.url} controls />;
                 })}
               </Files>
             </Card>

@@ -9,7 +9,7 @@ import React, {
   useEffect,
   useState,
 } from 'react';
-import { FiArrowLeft, FiBook, FiBookOpen, FiInfo } from 'react-icons/fi';
+import { FiArrowLeft, FiBook, FiInfo } from 'react-icons/fi';
 import { Link, useHistory } from 'react-router-dom';
 import Dropzone from '../../components/Dropzone';
 import Header from '../../components/Header';
@@ -34,7 +34,6 @@ interface ClassRoomProps {
 
 const CreateObservationToClass: React.FC = () => {
   const [title, setTitle] = useState('');
-  const [notes, setNotes] = useState('');
   const [description, setDescription] = useState('');
   const [selectedFiles, setSelectedFiles] = useState<File[]>();
   const [portfolios, setPortfolios] = useState<PortfolioProps[]>();
@@ -70,10 +69,18 @@ const CreateObservationToClass: React.FC = () => {
     async (e: FormEvent) => {
       e.preventDefault();
 
+      if (selectedPortfolios.length === 0) {
+        addToast({
+          type: 'error',
+          title: 'Seleção de Portifolio obrigatório',
+          description: 'Obrigatório pelo menos um portfolio selecionado',
+        });
+        return;
+      }
+
       const data = new FormData();
 
       data.append('title', title);
-      data.append('notes', notes);
       data.append('description', description);
       data.append('portfolios', JSON.stringify(selectedPortfolios));
 
@@ -94,15 +101,7 @@ const CreateObservationToClass: React.FC = () => {
           'Agora está observação já pode ser vista no Portfolio da criança',
       });
     },
-    [
-      title,
-      notes,
-      description,
-      selectedFiles,
-      history,
-      addToast,
-      selectedPortfolios,
-    ],
+    [title, description, selectedFiles, history, addToast, selectedPortfolios],
   );
 
   const handleselectclassroom = useCallback(
@@ -139,7 +138,10 @@ const CreateObservationToClass: React.FC = () => {
       <Container>
         <Header />
         <Link to="/dashboard" className="arrow-left-icon">
-          <FiArrowLeft size={20} />
+          <p>
+            <FiArrowLeft />
+            Voltar
+          </p>
         </Link>
         <Content>
           <form onSubmit={handleSubmit}>
@@ -167,18 +169,6 @@ const CreateObservationToClass: React.FC = () => {
                 icon={FiInfo}
                 onChange={e => {
                   setDescription(e.target.value);
-                }}
-              />
-
-              <label htmlFor="notes" className="label">
-                Notas
-              </label>
-              <Textarea
-                name="notes"
-                placeholder="Digite aqui uma nota específica sobre a criança"
-                icon={FiBookOpen}
-                onChange={e => {
-                  setNotes(e.target.value);
                 }}
               />
 

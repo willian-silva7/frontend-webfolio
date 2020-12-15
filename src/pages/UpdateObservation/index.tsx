@@ -94,7 +94,10 @@ const UpdateObservation: React.FC = () => {
       <Container>
         <Header />
         <Link to={`/portfolio/${params.portfolio}`} className="arrow-left-icon">
-          <FiArrowLeft size={20} />
+          <p>
+            <FiArrowLeft />
+            Voltar
+          </p>
         </Link>
         <Content>
           <form onSubmit={handleSubmit}>

@@ -71,7 +71,10 @@ const CreateObservation: React.FC = () => {
       <Container>
         <Header />
         <Link to={`/portfolio/${params.portfolio}`} className="arrow-left-icon">
-          <FiArrowLeft size={20} />
+          <p>
+            <FiArrowLeft />
+            Voltar
+          </p>
         </Link>
         <Content>
           <form onSubmit={handleSubmit}>
@@ -103,7 +106,7 @@ const CreateObservation: React.FC = () => {
               />
 
               <label htmlFor="notes" className="label">
-                Notas
+                Notas/Avaliação
               </label>
               <Textarea
                 name="notes"

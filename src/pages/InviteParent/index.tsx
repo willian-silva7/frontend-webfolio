@@ -56,7 +56,10 @@ const InviteParent: React.FC = () => {
       <Container>
         <Header />
         <Link to="/dashboard" className="arrow-left-icon">
-          <FiArrowLeft size={20} />
+          <p>
+            <FiArrowLeft />
+            Voltar
+          </p>
         </Link>
         <Content>
           <form onSubmit={handleSubmit}>

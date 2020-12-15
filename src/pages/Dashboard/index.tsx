@@ -24,7 +24,6 @@ interface PortfoliosProps {
 const Dashboard: React.FC = () => {
   const [portfolios, setPortifolios] = useState<PortfoliosProps[]>([]);
   const [searchPortfolio, setSearchPortfolio] = useState('');
-  const [addUser, setAddUser] = useState(false);
 
   useEffect(() => {
     api.get('/portfolio').then(response => {
@@ -42,10 +41,6 @@ const Dashboard: React.FC = () => {
 
   const handleChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     setSearchPortfolio(event.target.value);
-  }, []);
-
-  const handleAddGuest = useCallback(() => {
-    setAddUser(true);
   }, []);
 
   return (
@@ -99,7 +94,12 @@ const Dashboard: React.FC = () => {
             <tbody>
               {results.map(portfolio => (
                 <tr key={portfolio._id}>
-                  <td className="name">{portfolio.nameChildren}</td>
+                  <td className="name">
+                    <Link to={`/portfolio/${portfolio._id}`}>
+                      {portfolio.nameChildren}
+                    </Link>
+                  </td>
+
                   <td className="classroom">{portfolio.classRoom}</td>
                   <td className="age">{portfolio.age}</td>
                   <td className="last-column">

@@ -31,6 +31,10 @@ export const Container = styled.div`
       color: var(--color-arrow-left);
       animation: ${appearFromLeft} 1s;
     }
+
+    svg {
+      margin-right: 0.86rem;
+    }
   }
 `;
 
