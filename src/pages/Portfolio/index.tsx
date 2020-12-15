@@ -47,10 +47,6 @@ interface PortfolioParams {
   portfolio: string;
 }
 
-interface UserProps {
-  _id: string;
-}
-
 const Portfolio: React.FC = () => {
   const [portfolioinfo, setPortfolioInfo] = useState<PortfolioProps>();
   const [observations, setObservations] = useState<Observation[]>([]);

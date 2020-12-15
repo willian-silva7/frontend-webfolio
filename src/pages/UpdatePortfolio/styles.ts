@@ -32,7 +32,7 @@ export const Container = styled.div`
       animation: ${appearFromLeft} 1s;
     }
 
-    svg {
+    a svg {
       margin-right: 0.86rem;
     }
   }

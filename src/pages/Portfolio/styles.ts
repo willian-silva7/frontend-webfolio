@@ -27,7 +27,7 @@ export const Container = styled.div`
       animation: ${appearFromLeft} 1s;
     }
 
-    svg {
+    a svg {
       margin-right: 0.86rem;
     }
   }
@@ -173,6 +173,14 @@ export const Card = styled.div`
   justify-content: center;
   padding-bottom: 1.72rem;
 
+  h3 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 100; /* number of lines to show */
+    -webkit-box-orient: vertical;
+  }
+
   h4 {
     margin-top: 0.86rem;
     font-size: 2.15rem;
@@ -183,6 +191,11 @@ export const Card = styled.div`
     margin-top: 0.86rem;
     font-size: 2.15rem;
     font-weight: 400;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 100; /* number of lines to show */
+    -webkit-box-orient: vertical;
   }
 
   @media (min-width: 700px) {

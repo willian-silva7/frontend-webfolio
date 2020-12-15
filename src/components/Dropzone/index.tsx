@@ -30,7 +30,7 @@ const Dropzone: React.FC<Props> = ({ onFileUpload }) => {
   return (
     <Container>
       <div className="dropzone" {...getRootProps()}>
-        <input {...getInputProps()} />
+        <input {...getInputProps()} multiple />
 
         {selectedFileUrl ? (
           <img src={selectedFileUrl} alt="Point Thumbnail" />
