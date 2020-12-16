@@ -188,9 +188,12 @@ const CreateObservationToClass: React.FC = () => {
                 options={classRoom}
               />
 
-              <label htmlFor="classroom" className="label">
-                Escolha as Crianças que Participaram da Atividade
-              </label>
+              {selectedClassroom !== '0' && (
+                <label htmlFor="classroom" className="label">
+                  Clique para Selecionar as Crianças que Participaram da
+                  Atividade
+                </label>
+              )}
               <ListItem>
                 <ul className="items-grid">
                   {portfolios &&

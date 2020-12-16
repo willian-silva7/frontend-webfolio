@@ -126,7 +126,7 @@ export const ListItem = styled.div`
 
   .items-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 1.72rem;
     list-style: none;
   }
@@ -151,6 +151,7 @@ export const ListItem = styled.div`
   .items-grid li span {
     flex: 1;
     margin-top: 1.29rem;
+    padding-bottom: 3.9rem;
 
     display: flex;
     align-items: center;
