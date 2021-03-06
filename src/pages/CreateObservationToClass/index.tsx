@@ -34,6 +34,7 @@ interface ClassRoomProps {
 
 const CreateObservationToClass: React.FC = () => {
   const [title, setTitle] = useState('');
+  const [dateDay, setDateDay] = useState('');
   const [description, setDescription] = useState('');
   const [selectedFiles, setSelectedFiles] = useState<File[]>();
   const [portfolios, setPortfolios] = useState<PortfolioProps[]>();
@@ -81,6 +82,7 @@ const CreateObservationToClass: React.FC = () => {
       const data = new FormData();
 
       data.append('title', title);
+      data.append('dateDay', dateDay);
       data.append('description', description);
       data.append('portfolios', JSON.stringify(selectedPortfolios));
 
@@ -101,7 +103,15 @@ const CreateObservationToClass: React.FC = () => {
           'Agora está observação já pode ser vista no Portfolio da criança',
       });
     },
-    [title, description, selectedFiles, history, addToast, selectedPortfolios],
+    [
+      title,
+      description,
+      selectedFiles,
+      history,
+      addToast,
+      selectedPortfolios,
+      dateDay,
+    ],
   );
 
   const handleselectclassroom = useCallback(
@@ -169,6 +179,18 @@ const CreateObservationToClass: React.FC = () => {
                 icon={FiInfo}
                 onChange={e => {
                   setDescription(e.target.value);
+                }}
+              />
+
+              <label htmlFor="dateDay" className="label">
+                Data da Observação
+              </label>
+              <Input
+                name="dateDay"
+                type="date"
+                icon={FiBook}
+                onChange={e => {
+                  setDateDay(e.target.value);
                 }}
               />
 

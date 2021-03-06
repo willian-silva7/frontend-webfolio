@@ -25,6 +25,7 @@ interface Observation {
   title: string;
   description: string;
   notes: string;
+  dateDay: string;
   files: Array<{
     _id: string;
     name: string;
@@ -128,6 +129,8 @@ const Portfolio: React.FC = () => {
               <p>{observation.description}</p>
               {observation.notes && <h4>Notas/Avaliação:</h4>}
               <p>{observation.notes}</p>
+              {observation.dateDay && <h4>Data da observação:</h4>}
+              <p>{observation.dateDay}</p>
 
               <Files>
                 {observation.files.map(file => {

@@ -20,6 +20,7 @@ interface Observation {
   title: string;
   description: string;
   notes: string;
+  dateDay: string;
   files: Array<{
     _id: string;
     name: string;
@@ -35,6 +36,7 @@ const UpdateObservation: React.FC = () => {
   const [title, setTitle] = useState('');
   const [notes, setNotes] = useState('');
   const [description, setDescription] = useState('');
+  const [dateDay, setDateDay] = useState('');
 
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
 
@@ -63,6 +65,7 @@ const UpdateObservation: React.FC = () => {
       const data = new FormData();
 
       data.append('title', title);
+      data.append('dateDay', dateDay);
       data.append('notes', notes);
       data.append('description', description);
 
@@ -86,7 +89,16 @@ const UpdateObservation: React.FC = () => {
           'Agora está observação já pode ser vista no observation da criança',
       });
     },
-    [title, notes, description, selectedFiles, history, addToast, params],
+    [
+      title,
+      notes,
+      description,
+      selectedFiles,
+      history,
+      addToast,
+      params,
+      dateDay,
+    ],
   );
 
   return (
@@ -140,6 +152,19 @@ const UpdateObservation: React.FC = () => {
                 icon={FiBookOpen}
                 onChange={e => {
                   setNotes(e.target.value);
+                }}
+              />
+
+              <label htmlFor="dateDay" className="label">
+                Data da Observação
+              </label>
+              <Input
+                name="dateDay"
+                type="date"
+                defaultValue={observation?.dateDay}
+                icon={FiBook}
+                onChange={e => {
+                  setDateDay(e.target.value);
                 }}
               />
 

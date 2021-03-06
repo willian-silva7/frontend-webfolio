@@ -126,7 +126,7 @@ export const ListItem = styled.div`
 
   .items-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 1.72rem;
     list-style: none;
   }
@@ -161,5 +161,14 @@ export const ListItem = styled.div`
   .items-grid li.selected {
     background: #e1faec;
     border: 0.21rem solid #34cb79;
+  }
+
+  @media (min-width: 700px) {
+    .items-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.72rem;
+      list-style: none;
+    }
   }
 `;
